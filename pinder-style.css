@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f3f0;
+    min-height: 100vh;
+    color: #212529;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: white;
+    position: relative;
+}
+
+/* ========== 메인 화면 ========== */
+
+.screen {
+    padding: 40px 24px;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: 400;
+}
+
+/* ========== 입력 카드 ========== */
+
+.input-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.phone-input {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.25rem;
+    border: 2px solid #e8e6e3;
+    border-radius: 12px;
+    transition: all 0.2s;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
+    background: #fafaf9;
+}
+
+.phone-input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+}
+
+.phone-input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.08);
+}
+
+.input-help {
+    font-size: 0.8125rem;
+    color: #6c757d;
+    margin-top: 8px;
+}
+
+/* ========== 버튼 ========== */
+
+.btn-primary {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    color: #495057;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    transition: color 0.2s;
+}
+
+.btn-back:hover {
+    color: #212529;
+}
+
+/* ========== 배송 현황 화면 ========== */
+
+.delivery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.delivery-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212529;
+    flex: 1;
+    text-align: center;
+}
+
+.delivery-count {
+    font-size: 0.875rem;
+    color: #6c757d;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* ========== 배송 리스트 ========== */
+
+.delivery-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.delivery-item {
+    background: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.delivery-item:hover {
+    background: #f8f9fa;
+}
+
+.delivery-item:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.delivery-item:last-child {
+    border-radius: 0 0 12px 12px;
+}
+
+.delivery-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #212529;
+    line-height: 1.4;
+}
+
+.delivery-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.platform-tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.platform-naver {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.platform-coupang {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.platform-oliveyoung {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.delivery-status-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.status-badge {
+    font-size: 0.8125rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-preparing {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-shipping {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.status-delivered {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-arrival {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.delivery-date {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+/* ========== Empty State ========== */
+
+.empty-state {
+    display: none;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-state.show {
+    display: block;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.empty-subtext {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* ========== 로딩 ========== */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e9ecef;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 0.9375rem;
+    color: #495057;
+    font-weight: 500;
+}
+
+/* ========== 반응형 ========== */
+
+@media (max-width: 600px) {
+    .container {
+        box-shadow: none;
+    }
+    
+    .screen {
+        padding: 32px 20px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .input-card {
+        padding: 32px 24px;
+    }
+}
+
+@media (min-width: 601px) {
+    .container {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        min-height: calc(100vh - 80px);
+        border-radius: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* ========== 애니메이션 ========== */
+
+.delivery-item {
+    animation: fadeInUp 0.3s ease-out backwards;
+}
+
+.delivery-item:nth-child(1) { animation-delay: 0.05s; }
+.delivery-item:nth-child(2) { animation-delay: 0.1s; }
+.delivery-item:nth-child(3) { animation-delay: 0.15s; }
+.delivery-item:nth-child(4) { animation-delay: 0.2s; }
+.delivery-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinder - 택배 배송 조회</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 화면 -->
+        <div id="mainScreen" class="screen">
+            <header class="main-header">
+                <h1 class="logo">📦 Pinder</h1>
+                <p class="tagline">흩어져 있는 내 택배 한 번에 확인하세요</p>
+            </header>
+
+            <div class="input-card">
+                <input 
+                    type="tel" 
+                    id="phoneInput" 
+                    class="phone-input" 
+                    placeholder="010-1234-5678"
+                    maxlength="13"
+                >
+                <button class="btn-primary" onclick="searchDeliveries()">
+                    조회하기
+                </button>
+            </div>
+        </div>
+
+        <!-- 배송 현황 화면 -->
+        <div id="deliveryScreen" class="screen" style="display: none;">
+            <header class="delivery-header">
+                <button class="btn-back" onclick="goBack()">
+                    ← 돌아가기
+                </button>
+                <h2 class="delivery-title">배송 현황</h2>
+                <div class="delivery-count">
+                    <span id="deliveryCount">0</span>건
+                </div>
+            </header>
+
+            <div class="delivery-list" id="deliveryList">
+                <!-- 배송 목록이 여기에 동적으로 추가됩니다 -->
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📭</div>
+                <p class="empty-text">배송 정보를 찾을 수 없습니다</p>
+                <p class="empty-subtext">주문 시 입력한 전화번호를 확인해주세요</p>
+            </div>
+        </div>
+
+        <!-- 로딩 -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">배송 정보를 조회하는 중...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
