@@ -1,0 +1,27 @@
+{
+  "name": "smart-delivery-tracker",
+  "version": "2.0.0",
+  "description": "통합 택배 배송 조회 시스템 - 스마트택배 API 연동",
+  "main": "backend-server.js",
+  "scripts": {
+    "start": "node backend-server.js",
+    "dev": "nodemon backend-server.js"
+  },
+  "keywords": [
+    "delivery",
+    "tracking",
+    "ecommerce",
+    "sweettracker",
+    "smart-delivery"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
