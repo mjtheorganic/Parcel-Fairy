@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 택배 배송 조회 - Smart Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 통합 택배 배송 조회</h1>
+            <div class="subtitle">네이버쇼핑 · 쿠팡 · 올리브영 배송을 한눈에</div>
+            <div class="badge">🌐 GitHub Pages 버전</div>
+        </header>
+
+        <div class="github-note">
+            <h3>💡 GitHub Pages 버전 안내</h3>
+            <p>
+                현재 GitHub Pages에서는 정적 웹사이트만 호스팅되므로 <strong>백엔드 서버가 없어 시뮬레이션 모드</strong>로 작동합니다.<br>
+                실제 배송 조회 기능을 사용하려면 로컬에서 백엔드 서버를 실행하거나, 
+                <a href="https://vercel.com" target="_blank">Vercel</a>, 
+                <a href="https://www.netlify.com" target="_blank">Netlify</a> 같은 플랫폼에 배포하세요.<br>
+                자세한 내용은 <strong>README.md</strong>를 참고하세요.
+            </p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('auto')">🔍 자동 조회</button>
+            <button class="tab" onclick="switchTab('manual')">✏️ 수동 추가</button>
+            <button class="tab" onclick="switchTab('list')">📋 배송 목록</button>
+        </div>
+
+        <!-- 통계 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">전체 배송</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="shippingCount">0</div>
+                <div class="stat-label">배송중</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="deliveredCount">0</div>
+                <div class="stat-label">배송완료</div>
+            </div>
+        </div>
+
+        <!-- 자동 조회 섹션 -->
+        <div id="autoSection" class="input-section">
+            <h2 class="section-title">🔍 전화번호로 자동 조회</h2>
+            
+            <div class="info-box">
+                <div class="info-box-title">💡 시뮬레이션 모드</div>
+                <div class="info-box-content">
+                    현재 GitHub Pages 버전은 시뮬레이션 모드로 작동합니다. 전화번호를 입력하면 랜덤 배송 데이터가 생성됩니다.
+                    <br><strong>※ 실제 API 연동은 로컬 또는 클라우드 서버에서 가능합니다.</strong>
+                </div>
+            </div>
+
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="autoPhone">전화번호 <span class="required">*</span></label>
+                    <input type="tel" id="autoPhone" placeholder="010-1234-5678">
+                    <div class="example-text">아무 번호나 입력하세요 (시뮬레이션)</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="autoPlatform">쇼핑몰 선택</label>
+                    <select id="autoPlatform">
+                        <option value="all">전체 쇼핑몰</option>
+                        <option value="naver">네이버쇼핑</option>
+                        <option value="coupang">쿠팡</option>
+                        <option value="oliveyoung">올리브영</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="autoSearch()">
+                🔍 배송 정보 자동 조회 (시뮬레이션)
+            </button>
+        </div>
+
+        <!-- 수동 추가 섹션 -->
+        <div id="manualSection" class="input-section" style="display: none;">
+            <h2 class="section-title">✏️ 수동으로 배송 추가</h2>
+            
+            <div class="info-box">
+                <div class="info-box-title">📌 시뮬레이션 모드</div>
+                <div class="info-box-content">
+                    송장번호를 입력하면 랜덤 배송 추적 데이터가 생성됩니다.
+                </div>
+            </div>
+
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="platform">쇼핑몰</label>
+                    <select id="platform">
+                        <option value="naver">네이버쇼핑</option>
+                        <option value="coupang">쿠팡</option>
+                        <option value="oliveyoung">올리브영</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="carrier">택배사</label>
+                    <select id="carrier">
+                        <option value="04">CJ대한통운</option>
+                        <option value="05">한진택배</option>
+                        <option value="08">롯데택배</option>
+                        <option value="06">로젠택배</option>
+                        <option value="23">경동택배</option>
+                        <option value="01">우체국택배</option>
+                        <option value="46">CU 편의점택배</option>
+                    </select>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="productName">상품명</label>
+                    <input type="text" id="productName" placeholder="구매한 상품명">
+                    <div class="example-text">예: 무선 이어폰, 스킨케어 세트</div>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="trackingNumber">송장번호 <span class="required">*</span></label>
+                    <input type="text" id="trackingNumber" placeholder="아무 숫자나 입력하세요">
+                    <div class="example-text">시뮬레이션: 아무 숫자나 입력 가능</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="manualAdd()">배송 추가하기</button>
+        </div>
+
+        <!-- 배송 목록 섹션 -->
+        <div id="listSection" style="display: none;">
+            <div class="filter-section">
+                <h3 style="margin-bottom: 15px;">🔍 필터</h3>
+                <div class="filter-grid">
+                    <div class="input-group" style="margin: 0;">
+                        <label>쇼핑몰</label>
+                        <select id="filterPlatform" onchange="filterDeliveries()">
+                            <option value="">전체</option>
+                            <option value="naver">네이버쇼핑</option>
+                            <option value="coupang">쿠팡</option>
+                            <option value="oliveyoung">올리브영</option>
+                        </select>
+                    </div>
+                    <div class="input-group" style="margin: 0;">
+                        <label>배송상태</label>
+                        <select id="filterStatus" onchange="filterDeliveries()">
+                            <option value="">전체</option>
+                            <option value="상품인수">상품인수</option>
+                            <option value="상품이동중">상품이동중</option>
+                            <option value="배송지도착">배송지도착</option>
+                            <option value="배송출발">배송출발</option>
+                            <option value="배송완료">배송완료</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="deliveryList" class="delivery-list"></div>
+            
+            <div id="emptyState" class="empty-state">
+                <div class="empty-state-icon">📭</div>
+                <div class="empty-state-text">등록된 배송이 없습니다</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 로딩 오버레이 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div>배송 정보를 조회하는 중입니다...</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
